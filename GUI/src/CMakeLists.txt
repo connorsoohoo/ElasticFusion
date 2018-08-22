@@ -23,7 +23,7 @@ find_package(BLAS REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(Pangolin 0.1 REQUIRED)
 find_package(CUDA REQUIRED)
-find_package(OpenNI2 REQUIRED)
+#find_package(OpenNI2 REQUIRED)
 find_package(efusion REQUIRED)
 find_package(SuiteSparse REQUIRED)
 
@@ -43,7 +43,7 @@ include_directories(${EIGEN_INCLUDE_DIRS})
 include_directories(${Pangolin_INCLUDE_DIRS})
 include_directories(${CUDA_INCLUDE_DIRS})
 include_directories(${EFUSION_INCLUDE_DIR})
-include_directories(${OPENNI2_INCLUDE_DIR})
+#include_directories(${OPENNI2_INCLUDE_DIR})
 
 if(WITH_REALSENSE)
   include_directories(${REALSENSE_INCLUDE_DIR})
@@ -69,8 +69,8 @@ else()
   add_definitions(-Dlinux=1)
 endif()
 
-set(CMAKE_CXX_FLAGS ${ADDITIONAL_CMAKE_CXX_FLAGS} "-O3 -msse2 -msse3 -Wall -std=c++11")
-#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++11")
+set(CMAKE_CXX_FLAGS ${ADDITIONAL_CMAKE_CXX_FLAGS} "-O3 -Wall -std=c++11")  # -msse2 -msse3
+#set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -Wall -std=c++11") 
 
 add_executable(ElasticFusion 
                ${srcs}
@@ -86,7 +86,7 @@ target_link_libraries(ElasticFusion
                       ${CUDA_LIBRARIES}
                       ${EXTRA_LIBS}
                       ${EFUSION_LIBRARY}
-                      ${OPENNI2_LIBRARY}
+                      #${OPENNI2_LIBRARY}
                       ${SUITESPARSE_LIBRARIES}
                       ${BLAS_LIBRARIES}
                       ${LAPACK_LIBRARIES}
